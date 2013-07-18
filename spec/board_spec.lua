@@ -1,7 +1,7 @@
 require 'busted'
 require 'board'
 
-describe('board', function()
+describe('Board', function()
 
   before_each(function()
     board = Board:new()
@@ -91,7 +91,6 @@ describe('board', function()
                                                               { " ", " ", "O"},
                                                               {" ", " ", "X"}})
     end)
-
   end)
 end)
 

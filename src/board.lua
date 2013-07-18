@@ -1,6 +1,6 @@
 require 'middleclass'
 
-Board = class('Person')
+Board = class('Board')
 
 function Board:initialize()
   cells = {" ", " ", " ", " ", " ", " ", " ", " ", " "}
