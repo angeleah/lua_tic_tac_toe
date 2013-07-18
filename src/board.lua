@@ -29,7 +29,7 @@ function Board:clear_all_spaces()
 end
 
 function Board:available_spaces()
-  spaces = {}
+  local spaces = {}
   for index,val in ipairs(cells) do
     if val == " " then
       table.insert(spaces, index)
@@ -58,15 +58,17 @@ function Board:diagonal_back()
   return {cells[1],cells[5],cells[9]}
 end
 
+function Board:add_region(func, tbl)
+  for k,v in ipairs(func) do
+    table.insert(tbl, v)
+  end
+end
+
 function Board:possible_winning_combinations()
-  p = {}
-  for k,v in ipairs(board:rows()) do
-    table.insert(p, v)
-  end
-  for k,v in ipairs(board:columns()) do
-    table.insert(p, v)
-  end
-  table.insert(p, board:diagonal_forward())
-  table.insert(p, board:diagonal_back())
-  return p
+  local pwc = {}
+  Board:add_region(Board:rows(), pwc)
+  Board:add_region(Board:columns(), pwc)
+  table.insert(pwc, board:diagonal_forward())
+  table.insert(pwc, board:diagonal_back())
+  return pwc
 end

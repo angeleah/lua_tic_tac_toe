@@ -48,6 +48,7 @@ describe('Board', function()
     it('detects if a square is occupied',function()
       set_board_state(1)
       assert.True(board:cell_occupied(1))
+      assert.False(board:cell_occupied(2))
     end)
   end)
 
