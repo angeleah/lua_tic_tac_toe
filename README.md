@@ -24,6 +24,8 @@ Get Luarocks-
 Install the testing framework Busted-
 1.Type "luarocks install busted"
 
+*If you experience wget errors, run brew update wget and brew doctor to make sure that wget is linked properly.  Then run "luarocks install busted" again.  This should work.
+
 ##Running the specs-
 1.Clone this project
 2.cd into this project's root.
