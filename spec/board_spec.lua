@@ -1,6 +1,5 @@
 require "busted"
 require "board"
-require "inspect"
 
 describe("board", function()
 
