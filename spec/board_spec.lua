@@ -1,5 +1,5 @@
-require 'busted'
 require 'board'
+require 'busted'
 
 describe('Board', function()
 

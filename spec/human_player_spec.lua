@@ -1,6 +1,6 @@
+require 'board'
 require 'busted'
 require 'human_player'
-require 'board'
 
 describe('HumanPlayer', function()
 

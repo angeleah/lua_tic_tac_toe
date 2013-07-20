@@ -1,12 +1,15 @@
-require 'middleclass'
-require 'player'
 require 'ai'
 require 'board'
+require 'middleclass'
 
-ComputerPlayer = class('ComputerPlayer', Player)
+ComputerPlayer = class('ComputerPlayer')
 
-function ComputerPlayer:initialize(mark)
-  ComputerPlayer.set_mark(mark)
+function ComputerPlayer:set_mark(mark)
+  player_mark = mark
+end
+
+function ComputerPlayer:mark()
+  return player_mark
 end
 
 function ComputerPlayer:get_move(board)

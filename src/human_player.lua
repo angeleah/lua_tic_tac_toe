@@ -1,11 +1,14 @@
-require 'middleclass'
-require 'player'
 require 'board'
+require 'middleclass'
 
-HumanPlayer = class('HumanPlayer', Player)
+HumanPlayer = class('HumanPlayer')
 
-function HumanPlayer:initialize(mark)
-  HumanPlayer.set_mark(mark)
+function HumanPlayer:set_mark(mark)
+  player_mark = mark
+end
+
+function HumanPlayer:mark()
+  return player_mark
 end
 
 function HumanPlayer:get_move(board)

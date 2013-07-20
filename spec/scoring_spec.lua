@@ -1,5 +1,5 @@
-require 'busted'
 require 'board'
+require 'busted'
 require 'scoring'
 
 describe('Scoring', function()
