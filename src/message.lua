@@ -3,7 +3,7 @@ require 'middleclass'
 Message = class('Message')
 
 function Message:initialize()
-  messages = {
+  self.messages = {
     ["welcome"] = "Welcome to Tic Tac Toe! You will create 2 players. The first player you create will go first.",
     ["create_player"] = "Create a player.",
     ["determine_player_type"] = "Do you want the player to be human or computer? (human/computer)",
@@ -18,9 +18,9 @@ function Message:initialize()
 end
 
 function Message:retrieve(...)
-  full_message = ""
+  self.full_message = ""
   for i,v in pairs({...}) do
-    full_message = full_message .. messages[v] .. "\n"
+    self.full_message = self.full_message .. self.messages[v] .. "\n"
   end
-  return full_message
+  return self.full_message
 end

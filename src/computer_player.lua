@@ -5,11 +5,7 @@ require 'middleclass'
 ComputerPlayer = class('ComputerPlayer')
 
 function ComputerPlayer:set_mark(mark)
-  player_mark = mark
-end
-
-function ComputerPlayer:mark()
-  return player_mark
+  self.mark = mark
 end
 
 function ComputerPlayer:get_move(board)

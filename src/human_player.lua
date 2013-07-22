@@ -4,11 +4,7 @@ require 'middleclass'
 HumanPlayer = class('HumanPlayer')
 
 function HumanPlayer:set_mark(mark)
-  player_mark = mark
-end
-
-function HumanPlayer:mark()
-  return player_mark
+    self.mark = mark
 end
 
 function HumanPlayer:get_move(board)

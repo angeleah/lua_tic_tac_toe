@@ -8,10 +8,10 @@ describe('Message', function()
   end)
 
   it('return a single message', function()
-    assert.are.same(message:retrieve("welcome"),"Welcome to Tic Tac Toe! You will create 2 players. The first player you create will go first.\n")
+    assert.are.same("Welcome to Tic Tac Toe! You will create 2 players. The first player you create will go first.\n", message:retrieve("welcome"))
   end)
 
   it('return a single message', function()
-    assert.are.same(message:retrieve("welcome", "create_player"), "Welcome to Tic Tac Toe! You will create 2 players. The first player you create will go first.\nCreate a player.\n")
+    assert.are.same("Welcome to Tic Tac Toe! You will create 2 players. The first player you create will go first.\nCreate a player.\n", message:retrieve("welcome", "create_player"))
   end)
 end)

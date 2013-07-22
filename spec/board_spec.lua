@@ -17,32 +17,32 @@ describe('Board', function()
 
     it('initializes with blank spaces', function()
       for i = 1, 9 do
-        assert.are.same(board:get(i), " ")
+        assert.are.same(" ", board:get(i))
       end
     end)
 
     it('writes to and reads from a cell', function()
       set_board_state(1)
-      assert.are.equal(board:get(1),"X")
+      assert.are.equal("X", board:get(1))
     end)
 
     it('can undo a move', function()
       set_board_state(1)
-      assert.are.same(board:current_state(), {"X"," "," "," "," "," "," "," "," "})
+      assert.are.same({"X"," "," "," "," "," "," "," "," "}, board:current_state())
       board:undo_move(1)
-      assert.are.same(board:current_state(), {" "," "," "," "," "," "," "," "," "})
+      assert.are.same({" "," "," "," "," "," "," "," "," "}, board:current_state())
     end)
 
     it('clears the spaces', function()
       set_board_state(9)
-      assert.are.same(board:current_state(), {"X","X","X","X","X","X","X","X","X"})
+      assert.are.same({"X","X","X","X","X","X","X","X","X"}, board:current_state())
       board:clear_all_spaces()
-      assert.are.same(board.current_state(), {" "," "," "," "," "," "," "," "," "})
+      assert.are.same({" "," "," "," "," "," "," "," "," "}, board:current_state())
     end)
 
     it('finds available spaces', function()
       set_board_state(7)
-      assert.are.same(board:available_spaces(), {8,9})
+      assert.are.same({8,9}, board:available_spaces())
     end)
 
     it('detects if a square is occupied',function()
@@ -61,36 +61,36 @@ describe('Board', function()
     end)
 
     it('gets the rows of a board',function()
-      assert.are.same(#board:rows(), 3)
-      assert.are.same(board:rows(),{{" ", "X", " "},
-                                    {" ", " ", " "},
-                                    {"O", " ", "X"}})
+      assert.are.same(3, #board:rows())
+      assert.are.same({{" ", "X", " "},
+                       {" ", " ", " "},
+                       {"O", " ", "X"}}, board:rows())
     end)
 
     it('gets the columns of a board', function()
-      assert.are.same(#board:columns(), 3)
-      assert.are.same(board:columns(),{{" ", " ", "O"},
-                                       {"X", " ", " "},
-                                       {" ", " ", "X"}})
+      assert.are.same(3, #board:columns())
+      assert.are.same({{" ", " ", "O"},
+                       {"X", " ", " "},
+                       {" ", " ", "X"}}, board:columns())
     end)
 
     it('gets the diagonal forward positions', function()
-      assert.are.same(board:diagonal_forward(), { " ", " ", "O"})
+      assert.are.same({ " ", " ", "O"}, board:diagonal_forward())
     end)
 
     it('gets the diagonal back positions', function()
-      assert.are.same(board:diagonal_back(), { " ", " ", "X"})
+      assert.are.same({ " ", " ", "X"}, board:diagonal_back())
     end)
 
     it('finds all possible winning combinations', function()
-      assert.are.same(board:possible_winning_combinations(), {{" ", "X", " "},
-                                                              { " ", " ", " "},
-                                                              {"O", " ", "X"},
-                                                              {" ", " ", "O"},
-                                                              { "X", " ", " "},
-                                                              {" ", " ", "X"},
-                                                              { " ", " ", "O"},
-                                                              {" ", " ", "X"}})
+      assert.are.same({{" ", "X", " "},
+                       {" ", " ", " "},
+                       {"O", " ", "X"},
+                       {" ", " ", "O"},
+                       {"X", " ", " "},
+                       {" ", " ", "X"},
+                       {" ", " ", "O"},
+                       {" ", " ", "X"}}, board:possible_winning_combinations())
     end)
   end)
 end)

@@ -3,34 +3,32 @@ require 'middleclass'
 Board = class('Board')
 
 function Board:initialize()
-  cells = {" ", " ", " ", " ", " ", " ", " ", " ", " "}
+  self.cells = {" ", " ", " ", " ", " ", " ", " ", " ", " "}
 end
 
 function Board:set(cell, mark)
-  cells[cell] = mark
+  self.cells[cell] = mark
 end
 
 function Board:get(cell)
-  return cells[cell]
+  return self.cells[cell]
 end
 
 function Board:current_state()
-  return cells
+  return self.cells
 end
 
 function Board:undo_move(cell)
-  cells[cell] = " "
+  self.cells[cell] = " "
 end
 
 function Board:clear_all_spaces()
-  for i = 1, 9 do
-    Board:undo_move(i)
-  end
+  self.cells = {" ", " ", " ", " ", " ", " ", " ", " ", " "}
 end
 
 function Board:available_spaces()
   local spaces = {}
-  for index,val in ipairs(cells) do
+  for index,val in ipairs(self.cells) do
     if val == " " then
       table.insert(spaces, index)
     end
@@ -39,36 +37,36 @@ function Board:available_spaces()
 end
 
 function Board:cell_occupied(cell)
-  return Board:get(cell) ~= " "
+  return self.cells[cell] ~= " "
 end
 
 function Board:rows()
-  return { {cells[1],cells[2],cells[3]}, {cells[4],cells[5],cells[6]}, {cells[7],cells[8],cells[9]} }
+  return { {self.cells[1],self.cells[2],self.cells[3]}, {self.cells[4],self.cells[5],self.cells[6]}, {self.cells[7],self.cells[8],self.cells[9]} }
 end
 
 function Board:columns()
-  return { {cells[1],cells[4],cells[7]}, {cells[2],cells[5],cells[8]}, {cells[3],cells[6],cells[9]} }
+  return { {self.cells[1],self.cells[4],self.cells[7]}, {self.cells[2],self.cells[5],self.cells[8]}, {self.cells[3],self.cells[6],self.cells[9]} }
 end
 
 function Board:diagonal_forward()
-  return {cells[3],cells[5],cells[7]}
+  return {self.cells[3],self.cells[5],self.cells[7]}
 end
 
 function Board:diagonal_back()
-  return {cells[1],cells[5],cells[9]}
+  return {self.cells[1],self.cells[5],self.cells[9]}
 end
 
 function Board:add_region(func, tbl)
-  for k,v in ipairs(func) do
+  for k,v in pairs(func) do
     table.insert(tbl, v)
   end
 end
 
 function Board:possible_winning_combinations()
   local pwc = {}
-  Board:add_region(Board:rows(), pwc)
-  Board:add_region(Board:columns(), pwc)
-  table.insert(pwc, board:diagonal_forward())
-  table.insert(pwc, board:diagonal_back())
+  self:add_region(self:rows(), pwc)
+  self:add_region(self:columns(), pwc)
+  table.insert(pwc, self:diagonal_forward())
+  table.insert(pwc, self:diagonal_back())
   return pwc
 end
