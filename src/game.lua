@@ -76,7 +76,8 @@ function Game:result()
 end
 
 function Game:get_player_move(player)
-  return self.players[player]:get_move(self.board)
+  local move = self.players[player]:get_move(self.board)
+  return move
 end
 
 function Game:player_can_make_move(player)

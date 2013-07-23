@@ -2,28 +2,36 @@ require 'message'
 require 'middleclass'
 
 Ui = class('Ui')
+local inspect = require 'inspect'
 
-function Ui:initialize(output, input)
+function Ui:initialize()
   self.message = Message:new()
-  self.output = stdout
-  self.input = stdin
 end
 
-function Ui:display_message( ... )
-  io.self.output:write(self.Message:retrieve({...}))
+function Ui:display_message(table)
+  local current_message = self.message:retrieve(table)
+  return io.stdout:write(current_message)
 end
 
 function Ui:read_input()
-return io.self.input:read()
+   local input = io.stdin:read()
+   return input
 end
 
 function Ui.display_board(board_state)
+  print("board state is")
+  print(inspect(board_state))
   local state = board_state
+  print(inspect("state is"))
+  print(inspect(state))
   local nl = "\n"
   local sp = " "
   local pipe = "|"
   local separator = "---+---+---"
-  return io.self.output:write(tostring(nl,sp,state[1],sp,pipe,sp,state[2],sp,pipe,sp,state[3],sp,nl,separator,nl,sp,nl,sp,state[4],sp,pipe,sp,state[5],sp,pipe,sp,state[6],sp,nl,separator,nl,sp,nl,sp,state[7],sp,pipe,sp,state[8],sp,pipe,state[9],sp,nl,nl))
+  -- print("state 1 =")
+  -- print(inspect(state[1]))
+  -- return io.stdout:write(separator)
+   io.stdout:write("\n "..state[1].." | "..state[2].." | "..state[3].." \n".."---+---+---".."\n \n "..state[4].." | "..state[5].." | "..state[6].." \n".."---+---+---".."\n \n "..state[7].." | "..state[8].." | "..state[9].." \n\n")
 end
 
 

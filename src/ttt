@@ -1,0 +1,7 @@
+#!/usr/bin/env lua
+require "runner"
+require "ui"
+
+ttt = Runner:new(Ui:new())
+
+ttt:start_the_game()
