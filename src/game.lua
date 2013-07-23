@@ -5,8 +5,6 @@ require 'middleclass'
 require 'scoring'
 require 'validate'
 
-local inspect = require 'inspect'
-
 Game = class('Game')
 
 function Game:initialize()
