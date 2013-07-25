@@ -5,9 +5,13 @@ Scoring = class('Scoring')
 
 local inspect = require('inspect')
 
-function Scoring:winner(board)
+function Scoring:initialize(board)
+  self.board = board
+end
+
+function Scoring:winner()
   self.game_winner = false
-  for i,group in pairs(board:possible_winning_combinations()) do
+  for i,group in pairs(self.board:possible_winning_combinations()) do
     if (group[1] == group[2]) and (group[2] == group[3]) and (group[1] ~= " ") then
       self.game_winner = true
     end
@@ -15,8 +19,8 @@ function Scoring:winner(board)
   return self.game_winner
 end
 
-function Scoring:winning_mark(board)
-  for i,v in ipairs(board:possible_winning_combinations()) do
+function Scoring:winning_mark()
+  for i,v in ipairs(self.board:possible_winning_combinations()) do
     if v[1] == v[2] and v[2] == v[3] and v[1] ~= " " then
       self.win_mark = v[1]
       return self.win_mark -- is this returning from the if or the function?
@@ -24,6 +28,6 @@ function Scoring:winning_mark(board)
   end
 end
 
-function Scoring:draw(board)
-  return self:winner(board) == false and #board:available_spaces(board) == 0
+function Scoring:draw()
+  return self:winner() == false and #self.board:available_spaces() == 0
 end

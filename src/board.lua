@@ -1,5 +1,6 @@
 require 'middleclass'
 
+local inspect = require 'inspect'
 Board = class('Board')
 
 function Board:initialize()
@@ -7,6 +8,7 @@ function Board:initialize()
 end
 
 function Board:set(cell, mark)
+  print(inspect(type(cell)))
   self.cells[cell] = mark
 end
 

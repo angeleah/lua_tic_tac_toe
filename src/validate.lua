@@ -11,6 +11,8 @@ function Validate:mark_input(input)
 end
 
 function Validate:number_input(input)
+  print('input is')
+  print(input)
   return self:validate_with_matcher(input, "%d")
 end
 

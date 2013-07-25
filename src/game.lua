@@ -7,15 +7,22 @@ require 'validate'
 
 Game = class('Game')
 
+local inspect = require 'inspect'
+
 function Game:initialize()
   self.board = Board:new()
-  self.scoring = Scoring:new(board)
+  self.scoring = Scoring:new(self.board)
   self.validate = Validate:new()
   self.players = {}
 end
 
-function Game:board_set(space, mark)
-  self.board:set(space, mark)
+function Game:make_move(move, mark)
+  print(" the move and the mark that will be marked are")
+  print(inspect(move))
+  print(inspect(mark))
+  print("move type is")
+  print(inspect(type(move)))
+  self.board:set(tonumber(move), mark)
 end
 
 function Game:create_human_player(mark)
@@ -36,7 +43,8 @@ end
 
 function Game:prepare_display_state()
   local prepared_board = {}
-  for k,v in pairs(self:gather_board_state()) do
+  local current_board_state = self:gather_board_state()
+  for k,v in pairs(current_board_state) do
     if v == " " then
       table.insert(prepared_board, tostring(k))
     else
@@ -46,18 +54,8 @@ function Game:prepare_display_state()
   return prepared_board
 end
 
-function Game:move_valid(move)
-  local valid_moves = {1, 2, 3, 4, 5, 6, 7, 8, 9}
-   for _,v in pairs(valid_moves) do
-    if v == move then
-      return true
-    end
-  end
-  return false
-end
-
 function Game:is_over()
-  if self.scoring:winner(self.board) or self.scoring:draw(self.board) then
+  if self.scoring:winner() or self.scoring:draw() then
     return true
   else
     return false
@@ -65,10 +63,10 @@ function Game:is_over()
 end
 
 function Game:result()
-  local message_key = "draw"
+  local message_key = {"draw"}
   for k,player in pairs(self.players) do
-    if self.scoring:winning_mark(self.board) == player.mark then
-       message_key = "player_"..tostring(k).."_win"
+    if self.scoring:winning_mark() == player.mark then
+       message_key = {"player_"..tostring(k).."_win"}
        return message_key
     end
   end
@@ -76,8 +74,25 @@ function Game:result()
 end
 
 function Game:get_player_move(player)
+  print(inspect(player))
+  print("get player move for")
+  print(inspect(self.players[player].mark))
   local move = self.players[player]:get_move(self.board)
   return move
+end
+
+function Game:make_move_player(player, move)
+  local mark = self.players[player].mark
+  print('mark of the player going to make the move is')
+  print(mark)
+  print("move of the player going to make the move is")
+  print(move)
+  self:make_move(move, mark)
+  return self:prepare_display_state()
+end
+
+function Game:move_available(cell)
+  return not self.board:cell_occupied(cell)
 end
 
 function Game:player_can_make_move(player)

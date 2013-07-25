@@ -8,7 +8,7 @@ local  inspect = require 'inspect'
 
 function Ai:initialize(player, board)
   self.board = board
-  self.scoring = Scoring:new()
+  self.scoring = Scoring:new(self.board)
   self.player = player
   self.max_mark = self.player.mark
 end
@@ -77,15 +77,15 @@ function Ai:min_move()
 end
 
 function Ai:state_is_terminal()
-  return self.scoring:winner(board) or self.scoring:draw(board)
+  return self.scoring:winner() or self.scoring:draw()
 end
 
 function Ai:evaluate_the_board()
-  if self.scoring:winner(board) and self.scoring:winning_mark(board) ~= self.max_mark then
+  if self.scoring:winner() and self.scoring:winning_mark() ~= self.max_mark then
     return -1
-  elseif self.scoring:winner(board) and self.scoring:winning_mark(board) == self.max_mark then
+  elseif self.scoring:winner() and self.scoring:winning_mark() == self.max_mark then
     return 1
-  elseif self.scoring:draw(board) then
+  elseif self.scoring:draw() then
     return 0
   end
 end
