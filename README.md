@@ -14,23 +14,23 @@ If you would like to use Windows, you can follow the instructions [here](http://
 4.  Type "make install"
 
 ###Get Luarocks-
-1  [Download](http://luarocks.org/en/Release_history) and unpack the LuaRocks tarball. Use luarocks-2.1.0-rc2.tar.gz 15-Jul-2013 15:20  91K.
-2  cd to the luarocks-0.1/ in the location that it is at and type "./configure"
-3  Type "make"
-4  As a superuser, run "make install" *if you experience issuses, look [here](http://luarocks.org/en/Installation_instructions_for_Unix)
-6  Check that you have version 2.1.0 by typing "luarocks"
+1.  [Download](http://luarocks.org/en/Release_history) and unpack the LuaRocks tarball. Use luarocks-2.1.0-rc2.tar.gz 15-Jul-2013 15:20  91K.
+2.  cd to the luarocks-0.1/ in the location that it is at and type "./configure"
+3.  Type "make"
+4.  As a superuser, run "make install" *if you experience issuses, look [here](http://luarocks.org/en/Installation_instructions_for_Unix)
+6.  Check that you have version 2.1.0 by typing "luarocks"
 
 ###Install the testing framework Busted-
-1  Type "luarocks install busted" *If you experience wget errors, run brew update wget and brew doctor to make sure that wget is linked properly.  Then run "luarocks install busted" again.  This should work.
+1.  Type "luarocks install busted" *If you experience wget errors, run brew update wget and brew doctor to make sure that wget is linked properly.  Then run "luarocks install busted" again.  This should work.
 
 ##Running the specs-
-1  Clone this project
-2  cd into this project's root.
-3  Type "busted" or "busted spec"
+1.  Clone this project
+2.  cd into this project's root.
+3.  Type "busted" or "busted spec"
 
 ##Running the game.
-1  From the root directory, cd into src.
-2  Type "lua executor.lua"
+1.  From the root directory, cd into src.
+2.  Type "lua executor.lua"
 
 
 
